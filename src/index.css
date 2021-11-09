@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Hind";
+  src: url("./assets/fonts/Hind-Regular.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "HindSemiBold";
+  src: url("./assets/fonts/Hind-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Playfair";
+  src: url("./app/assets/fonts/PlayfairDisplay-Regular.ttf");
+  font-weight: 300;
+}
+
+body {
+  font-family: "Hind";
+  background: #f2f2f2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border-style: none;
+}
+
+textarea,
+select,
+input {
+  border: none;
+  outline: none;
+}
+
+input,
+textarea {
+  -webkit-appearance: none;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+input[type="date"]:before {
+  color: rgba(33, 51, 79, 0.8);
+}
+
+input[type="date"]:after {
+  color: #21334f;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
