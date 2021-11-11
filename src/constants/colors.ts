@@ -11,7 +11,10 @@ const Colors = {
   mediumGreySecondary: "#7D7878;",
   darkGrey: "#323C46",
   darkGreySecondary: "#565D5A",
-  offWhite: " #F2F2F2",
+  offWhite: "#F2F2F2",
+  white: "#ffffff",
+  icon: "#E1E4E6",
+  link: " #C9CED3",
 };
 
 export default Colors;
