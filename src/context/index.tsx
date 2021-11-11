@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useMutation } from "react-query";
 import { loginUser, createUser, refreshToken } from "../network/mutation";
 
@@ -44,12 +44,11 @@ export function AuthProvider({
   });
 
   const history = useHistory();
-  const location = useLocation();
 
   // If we change page, reset the error state.
   useEffect(() => {
     if (error) setError(null);
-  }, [location.pathname]);
+  }, []);
 
   const { isLoading, isError, error: loginError, mutate, data } = useMutation(
     loginUser
@@ -70,7 +69,7 @@ export function AuthProvider({
     if (isLoading) {
       setLoading(true);
     }
-    mutate({ email, password });
+    // mutate({ email, password });
     if (isError) {
       setError(loginError);
       setLoading(false);
@@ -92,7 +91,7 @@ export function AuthProvider({
     if (signupLoading) {
       setLoading(true);
     }
-    signupMutate({ email, password, firstName, lastName });
+    // signupMutate({ email, password, firstName, lastName });
     if (signupIsError) {
       setError(signupError);
       setLoading(false);
@@ -115,9 +114,9 @@ export function AuthProvider({
     setGrid(!grid);
   }
 
-  useEffect(() => {
-    getGridState;
-  }, []);
+  // useEffect(() => {
+  //   getGridState;
+  // }, []);
 
   const memoedValue = useMemo(
     () => ({
