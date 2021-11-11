@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Suspense from "./components/commons/boundary";
+import useAuth from "./context";
+
+const SigninPage = lazy(() => import("./pages/signin"));
+const SignupPage = lazy(() => import("./pages/signup"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
+const CreateEventPage = lazy(() => import("./pages/createEvent"));
+const NotFoundPage = lazy(() => import("./pages/notFound"));
 
 function App() {
+  const { user } = useAuth();
+  //check if user is authenticated
+  if (!user) {
+    return (
+      <Suspense>
+        <Router>
+          <Switch>
+            <Route exact path="/signin" component={SigninPage} />
+            <Route exact path="/signup" component={SignupPage} />
+          </Switch>
+        </Router>
+      </Suspense>
+    );
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/create-event" component={CreateEventPage} />
+          <Route exact path="*" component={NotFoundPage} />
+        </Switch>
+      </Router>
+    </Suspense>
   );
 }
 
