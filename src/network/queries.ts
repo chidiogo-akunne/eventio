@@ -1,13 +1,6 @@
-import axios from "axios";
+import axios from "./axiosInstance";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
-
-export async function fetchPosts() {
-  const { data } = await axios.get(`${baseURL}/events`, {
-    headers: {
-      "Content-Type": "application/json",
-      APIKey: `${process.env.REACT_APP_API_KEY}`,
-    },
-  });
+export async function fetchEvents() {
+  const { data } = await axios.get(`/events`);
   return data;
 }
