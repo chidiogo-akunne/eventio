@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Fonts from "../../constants/fonts";
 import Colors from "../../constants/colors";
 
-export const Conatiner = styled.section`
+export const Container = styled.section`
   width: 100%;
   background-color: ${Colors.white};
   font-family: ${Fonts.Hind_Regular};
@@ -42,6 +42,9 @@ export const Conatiner = styled.section`
   }
   @media (min-width: 600px) and (max-width: 768px) {
     padding: 0 3.5rem;
+    h4 {
+      margin-top: 11rem;
+    }
   }
   @media (min-width: 768px) {
     background-color: ${Colors.offWhite};
