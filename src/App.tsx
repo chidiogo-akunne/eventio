@@ -1,7 +1,8 @@
 import React, { lazy } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Suspense from "./components/commons/boundary";
-import useAuth from "./context";
+import { useAuthContext } from "./context/auth/authContext";
+import AppProvider from "./context/app/appProvider";
 
 const SigninPage = lazy(() => import("./pages/signin"));
 const SignupPage = lazy(() => import("./pages/signup"));
@@ -9,31 +10,44 @@ const Dashboard = lazy(() => import("./pages/dashboard"));
 const CreateEventPage = lazy(() => import("./pages/createEvent"));
 const NotFoundPage = lazy(() => import("./pages/notFound"));
 
-function App() {
-  const { user } = useAuth();
-  //check if user is authenticated
-  if (!user) {
-    return (
-      <Suspense>
-        <Router>
-          <Switch>
-            <Route exact path="/signin" component={SigninPage} />
-            <Route exact path="/signup" component={SignupPage} />
-          </Switch>
-        </Router>
-      </Suspense>
-    );
+function RequireAuth({ children }: { children: JSX.Element }) {
+  const { isAuthenticated } = useAuthContext();
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/signin" replace state={{ from: location }} />;
   }
+
+  return children!;
+}
+
+function App() {
   return (
-    <Suspense>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/create-event" component={CreateEventPage} />
-          <Route exact path="*" component={NotFoundPage} />
-        </Switch>
-      </Router>
-    </Suspense>
+    <AppProvider>
+      <Suspense>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/create-event"
+            element={
+              <RequireAuth>
+                <CreateEventPage />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </Suspense>
+    </AppProvider>
   );
 }
 
