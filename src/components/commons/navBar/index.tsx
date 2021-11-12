@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import cc from "classcat";
 import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as CaretDown } from "../../../assets/images/icons/caret-down.svg";
 
 import { NavContainer, RightCover, Row, NameCover } from "./styles";
+import { useAuthContext } from "../../../context/auth/authContext";
 
 interface NavBarProps {
   authenticated: boolean;
@@ -13,20 +15,30 @@ interface NavBarProps {
 }
 
 export default function NavBarComponent(props: NavBarProps) {
-  const { authenticated, newUser, create, style } = props;
+  const { newUser, create, style } = props;
+  const auth = useAuthContext();
+
+  const { isAuthenticated, logout } = auth;
+  const fullName = auth.isAuthenticated
+    ? `${auth.user.firstName} ${auth.user.lastName}`
+    : "Tom Watts";
+  const initials = auth.isAuthenticated
+    ? `${auth.user.firstName[0]}${auth.user.lastName[0]}`
+    : "TW";
+
   return (
     <NavContainer style={style}>
-      {authenticated ? (
-        <div className="authenticated-logo">
-          <Logo />
-        </div>
-      ) : (
-        <div className="logo">
-          <Logo />
-        </div>
-      )}
+      <div
+        className={cc({
+          "authenticated-logo": isAuthenticated,
+          logo: !isAuthenticated,
+        })}
+      >
+        <Logo />
+      </div>
+
       <RightCover>
-        {authenticated ? (
+        {isAuthenticated ? (
           <>
             {create ? (
               <div className="close">
@@ -40,15 +52,13 @@ export default function NavBarComponent(props: NavBarProps) {
             ) : (
               <>
                 <NameCover>
-                  <p>TW</p>
+                  <p>{initials}</p>
                 </NameCover>
-                <p>Tom Watts</p>
+                <p>{fullName}</p>
                 <div className="dropdown">
                   <CaretDown />
                   <div className="dropdown-content">
-                    <ul>
-                      <li>Logout</li>
-                    </ul>
+                    <button onClick={logout}>Logout</button>
                   </div>
                 </div>
               </>

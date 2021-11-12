@@ -17,6 +17,9 @@ export const NavContainer = styled.nav`
     svg {
       width: 1.3rem;
       height: 1.7rem;
+      * {
+        fill: ${Colors.darkGrey};
+      }
     }
   }
   .authenticated-logo {
@@ -43,7 +46,7 @@ export const NavContainer = styled.nav`
         width: 2rem;
         height: 2.5rem;
         * {
-          fill: ${Colors.darkGrey};
+          fill: ${Colors.white};
         }
       }
     }
@@ -87,9 +90,10 @@ export const RightCover = styled.div`
     position: relative;
   }
   .dropdown-content {
+    background-color: ${Colors.white};
     display: none;
     position: absolute;
-    left: -2rem;
+    left: -3rem;
     overflow: auto;
     z-index: 99999;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -100,6 +104,11 @@ export const RightCover = styled.div`
         cursor: pointer;
         padding: 0.5rem 0.8rem;
       }
+    }
+    button {
+      color: ${Colors.greyText};
+      cursor: pointer;
+      padding: 0.5rem 0.8rem;
     }
   }
   &:hover .dropdown-content {
