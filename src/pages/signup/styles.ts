@@ -43,6 +43,9 @@ export const Container = styled.section`
   }
   @media (min-width: 600px) and (max-width: 768px) {
     padding: 0 3.5rem;
+    h4 {
+      margin-top: 21rem;
+    }
   }
   @media (min-width: 768px) {
     background-color: ${Colors.offWhite};
