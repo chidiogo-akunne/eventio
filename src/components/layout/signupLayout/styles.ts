@@ -30,7 +30,7 @@ export const LeftSection = styled.section`
       text-align: center;
     }
     h1 {
-      font-family: ${Fonts.Playfair};
+      font-family: ${Fonts.Hind_Regular};
       font-size: 2.25rem;
       font-weight: normal;
     }
