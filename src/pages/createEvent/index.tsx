@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router";
 import Navbar from "../../components/commons/navBar";
@@ -55,6 +55,7 @@ export default function CreateEventPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //check if input fields are empty
     if (!title?.length) {
       return setTitlerror("has to be filled up");
     }
@@ -70,6 +71,7 @@ export default function CreateEventPage() {
     if (!capacity?.length) {
       return setCapacityError("has to be filled up");
     }
+    //call mutation tocreate an event
     try {
       mutate();
     } catch (error) {
@@ -81,6 +83,7 @@ export default function CreateEventPage() {
     if (isSuccess) {
       return navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
 
   return (

@@ -1,4 +1,9 @@
-import { PropsWithChildren, useCallback, useMemo, useReducer } from "react";
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useReducer,
+} from "react";
 
 import { Provider } from "./appContext";
 import type { DisplayMode, FilterView } from "./appContext";

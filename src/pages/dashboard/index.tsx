@@ -37,6 +37,7 @@ export default function Dasboard() {
 
   const userId = auth.user.id;
 
+  //display spinner if data is loading
   if (isLoading) {
     return (
       <LoaderWrapper>
@@ -45,6 +46,7 @@ export default function Dasboard() {
     );
   }
 
+  //event data type
   type EventType = {
     id: string;
     startsAt: string;
@@ -63,6 +65,7 @@ export default function Dasboard() {
     title: string;
   };
 
+  //filter event data and check if loggin user joined event, pass data to event card
   const records = data
     .filter((event: EventType) => {
       switch (filterView) {

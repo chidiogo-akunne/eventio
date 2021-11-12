@@ -52,6 +52,7 @@ export default function SignupPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    //check if input fields are empty
     if (!firstName?.length) {
       return setFirstNameError("has to be filled up");
     }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/commons/button";
 import Input from "../../../components/commons/input";
@@ -26,7 +26,7 @@ function LoginForm({
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    //check if input fields are empty
     if (!email) {
       setEmailError("has to be filled up");
     }

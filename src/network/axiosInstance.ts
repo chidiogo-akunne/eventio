@@ -1,6 +1,8 @@
 import axios from "axios";
 import { logoutUser } from "../context/auth/authProvider";
 
+//create axios instance
+
 const baseURL = process.env.REACT_APP_BASE_URL;
 const APIKey = process.env.REACT_APP_API_KEY!;
 

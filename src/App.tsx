@@ -10,10 +10,12 @@ const Dashboard = lazy(() => import("./pages/dashboard"));
 const CreateEventPage = lazy(() => import("./pages/createEvent"));
 const NotFoundPage = lazy(() => import("./pages/notFound"));
 
+//protected route to prevent unauthenticated users from accessing private pages
 function RequireAuth({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuthContext();
   const location = useLocation();
-
+  
+  //if not authenticated redirect to sign in page
   if (!isAuthenticated) {
     return <Navigate to="/signin" replace state={{ from: location }} />;
   }
