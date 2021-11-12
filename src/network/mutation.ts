@@ -1,45 +1,39 @@
-import axios from "axios";
+import axios from "./axiosInstance";
 
-const baseURL = process.env.REACT_APP_BASE_URL;
-const userAccessToken = "UsersAccessToken";
-
-export async function createUser() {
-  const response = await axios.post(`${baseURL}/users`, {
-    headers: {
-      "Content-Type": "application/json",
-      APIKey: `${process.env.REACT_APP_API_KEY}`,
-    },
-  });
+export async function createUser(payload: {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}) {
+  const response = await axios.post(`/users`, payload);
   return response;
 }
 
-export async function loginUser() {
-  const response = await axios.post(`${baseURL}/auth/native`, {
-    headers: {
-      "Content-Type": "application/json",
-      APIKey: `${process.env.REACT_APP_API_KEY}`,
-    },
-  });
+export async function loginUser(payload: { email: string; password: string }) {
+  const response = await axios.post(`/auth/native`, payload);
   return response;
 }
 
-export async function refreshToken() {
-  const response = await axios.post(`${baseURL}/auth/native`, {
-    headers: {
-      "Content-Type": "application/json",
-      APIKey: `${process.env.REACT_APP_API_KEY}`,
-    },
-  });
+export async function refreshToken(refreshToken: string) {
+  const response = await axios.post(`/auth/native`, refreshToken);
   return response;
 }
 
-export async function createEvent() {
-  const response = await axios.post(`${baseURL}/events`, {
-    headers: {
-      "Content-Type": "application/json",
-      APIKey: `${process.env.REACT_APP_API_KEY}`,
-      Authorization: userAccessToken,
-    },
-  });
+export async function createEvent(payload: {
+  title: string;
+  description: string;
+  capacity: string;
+  startsAt: string;
+}) {
+  const response = await axios.post(`/events`, payload);
   return response;
+}
+
+export async function attendEvent(eventId: string) {
+  return axios.post(`/events/${eventId}/attendees/me`);
+}
+
+export async function unattendEvent(eventId: string) {
+  return axios.delete(`/events/${eventId}/attendees/me`);
 }
