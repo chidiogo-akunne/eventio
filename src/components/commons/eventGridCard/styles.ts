@@ -17,9 +17,14 @@ export const CardWrapper = styled.div`
       width: 18rem;
     }
   }
+  @media (min-width: 980px) {
+    .card {
+      width: 23rem;
+    }
+  }
   @media (min-width: 1020px) {
     .card {
-      width: 20rem;
+      width: 25rem;
       margin-right: 1.5rem;
     }
   }
@@ -57,8 +62,8 @@ export const Container = styled.div`
     color: ${Colors.mediumGreySecondary};
   }
   .description {
-    font-size: 1rem;
-    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    margin: 1rem 0;
   }
 `;
 
@@ -85,6 +90,12 @@ export const Row = styled.div`
     font-size: 0.875rem;
     font-weight: 500;
   }
+  .leave {
+    background-color: ${Colors.violetRed};
+    &:hover {
+      background-color: ${Colors.violetRedSecondary};
+    }
+  }
 `;
 
 export const ColumnCard = styled.div`
@@ -107,7 +118,7 @@ export const ColumnCard = styled.div`
 export const ColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   p {
     color: ${Colors.greyText};
     font-size: 0.875rem;
@@ -121,6 +132,7 @@ export const ColumnContainer = styled.div`
   }
   .col-description {
     font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
   .col-creator {
     display: none;
@@ -133,13 +145,29 @@ export const ColumnContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  }
-  .col-creator {
-    display: block;
-    color: ${Colors.mediumGreySecondary};
-  }
-  .col-large {
-    display: flex;
+    .col-creator {
+      display: block;
+      color: ${Colors.mediumGreySecondary};
+    }
+    .col-large {
+      display: flex;
+    }
+    .lg-title {
+      width: 100% / 5;
+      text-align: left;
+    }
+    .lg-decription {
+      width: 100% / 5;
+      text-align: left;
+    }
+    .lg-capacity {
+      width: 100% / 5;
+      text-align: left;
+    }
+    .lg-startedAt {
+      width: 100% / 4;
+      text-align: left;
+    }
   }
 `;
 
@@ -153,10 +181,13 @@ export const Col = styled.div`
   }
   .createdAt {
     color: ${Colors.mediumGrey};
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+  }
+  p {
+    font-size: 0.8rem;
   }
   button {
-    width: 6rem;
+    width: 5rem;
     height: 2rem;
     font-family: ${Fonts.Hind_Regular};
     font-size: 0.875rem;
