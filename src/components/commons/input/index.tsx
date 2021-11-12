@@ -10,7 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string;
   inputClass?: string;
   value: string;
-  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
   errorIndicator?: boolean;
 }
@@ -34,8 +34,8 @@ export default function InputComponent(props: InputProps) {
 
   return (
     <InputCover style={{ marginBottom: error?.length ? "0.5rem" : "2.5rem" }}>
-      <Label style={{ top: value ? "-0.8rem" : "0.2rem" }}>
-        <p>{placeholder}</p>
+      <Label style={{ top: value ? "-0.8rem" : "-0.4rem" }}>
+        <label htmlFor={name}>{placeholder}</label>
         {type === "password" ? (
           <>
             {visible ? (
@@ -52,6 +52,7 @@ export default function InputComponent(props: InputProps) {
       </Label>
       <Input
         type={visible ? type : "text"}
+        id={name}
         name={name}
         value={value}
         className={inputClass}

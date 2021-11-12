@@ -64,7 +64,7 @@ export const Label = styled.div`
   align-items: center;
   position: absolute;
   top: -0.8rem;
-  p {
+  label {
     color: ${Colors.mediumGrey};
     margin: 0;
   }
