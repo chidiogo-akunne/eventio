@@ -4,17 +4,16 @@ import Loader from "../loader";
 //import style
 import { LoaderWrapper } from "./styles";
 
+function Loading() {
+  return (
+    <LoaderWrapper>
+      <Loader />
+    </LoaderWrapper>
+  );
+}
+
 export default function SuspenseBoundary(
   props: React.PropsWithChildren<unknown>
 ) {
-  function Loading() {
-    return (
-      <LoaderWrapper>
-        <Loader />
-      </LoaderWrapper>
-    );
-  }
-
-  //check if loading is false before mountiing children
-  return <Suspense fallback={Loading}>{props.children}</Suspense>;
+  return <Suspense fallback={<Loading />}>{props.children}</Suspense>;
 }
