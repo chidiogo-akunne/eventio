@@ -12,6 +12,22 @@ export const Container = styled.section`
   }
 `;
 
+export const LoaderWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12rem auto;
+  svg {
+    width: 4rem;
+    height: 4.5rem;
+    * {
+      fill: ${Colors.darkGrey};
+    }
+  }
+`;
+
 export const Header = styled.div`
   width: 100%;
   display: flex;
