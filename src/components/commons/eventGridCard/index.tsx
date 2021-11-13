@@ -1,12 +1,12 @@
-import React from "react";
-import Card from "../card";
-import { ReactComponent as MemberIcon } from "../../../assets/images/icons/user.svg";
-import Button from "../button";
-import { timeConverter } from "../../../utils/timeConverter";
-import { useQuery, useQueryClient, useMutation } from "react-query";
-import { fetchEvents } from "../../../network/queries";
-import { useAppContext } from "../../../context/app/appContext";
-import { attendEvent, unattendEvent } from "../../../network/mutation";
+import React from 'react';
+import Card from '../card';
+import { ReactComponent as MemberIcon } from '../../../assets/images/icons/user.svg';
+import Button from '../button';
+import { timeConverter } from '../../../utils/timeConverter';
+import { useQuery, useQueryClient, useMutation } from 'react-query';
+import { fetchEvents } from '../../../network/queries';
+import { useAppContext } from '../../../context/app/appContext';
+import { attendEvent, unattendEvent } from '../../../network/mutation';
 
 import {
   Container,
@@ -14,9 +14,10 @@ import {
   CardWrapper,
   ColumnCard,
   ColumnContainer,
-  Col,
-} from "./styles";
+  Col
+} from './styles';
 
+//typings for event card
 interface EventCardProps {
   grid: boolean;
   attendees: any[];
@@ -38,6 +39,7 @@ interface EventCardProps {
   loading?: boolean;
 }
 
+//grid view of event card
 function GridView(props: EventCardProps) {
   const {
     capacity,
@@ -47,7 +49,7 @@ function GridView(props: EventCardProps) {
     owner,
     attendees,
     joined,
-    loading,
+    loading
   } = props;
 
   return (
@@ -65,8 +67,8 @@ function GridView(props: EventCardProps) {
             </div>
             <Button
               loading={loading}
-              value={joined ? "LEAVE" : "JOIN"}
-              buttonClass={joined ? "leave" : "join"}
+              value={joined ? 'LEAVE' : 'JOIN'}
+              buttonClass={joined ? 'leave' : 'join'}
               onClick={props.onAttandanceChange}
             />
           </Row>
@@ -76,6 +78,7 @@ function GridView(props: EventCardProps) {
   );
 }
 
+//list view of event card
 function ListView(props: EventCardProps) {
   const {
     capacity,
@@ -85,11 +88,13 @@ function ListView(props: EventCardProps) {
     owner,
     attendees,
     joined,
-    loading,
+    loading
   } = props;
+
+  //cut description text if the length is more than 30 characters
   const shortText =
     description?.length > 30
-      ? description.substring(0, 24) + "..."
+      ? description.substring(0, 24) + '...'
       : description;
 
   return (
@@ -112,8 +117,8 @@ function ListView(props: EventCardProps) {
             </div>
             <Button
               loading={loading}
-              value={joined ? "LEAVE" : "JOIN"}
-              buttonClass={joined ? "leave" : "join"}
+              value={joined ? 'LEAVE' : 'JOIN'}
+              buttonClass={joined ? 'leave' : 'join'}
               onClick={props.onAttandanceChange}
             />
           </Col>
@@ -123,9 +128,11 @@ function ListView(props: EventCardProps) {
   );
 }
 
+//fetch event and also pass a select function to be able to filter the data
 const useEventsQuery = (select: any) =>
-  useQuery(["events"], fetchEvents, { select });
+  useQuery(['events'], fetchEvents, { select });
 
+//filter data event to get the event that matches the id
 const useEvent = (id: string) =>
   useEventsQuery((data: any) => data.find((event: any) => event.id === id));
 
@@ -150,29 +157,33 @@ export default function EventGridCard(props: EventCardProps) {
   //   queryClient.invalidateQueries("events");
   // }
 
+  //mutation to join an event and refetch events after successfully joing.
   const attendMutation = useMutation(attendEvent, {
     onSuccess: () => {
-      queryClient.invalidateQueries("events");
-    },
+      queryClient.invalidateQueries('events');
+    }
   });
+
+  //mutation to leav an event and refetch events after successfully leaving.
   const unAttendMutation = useMutation(unattendEvent, {
     onSuccess: () => {
-      queryClient.invalidateQueries("events");
-    },
+      queryClient.invalidateQueries('events');
+    }
   });
 
-  const showGrid = displayMode === "grid";
+  //check if card display mode is grid
+  const showGrid = displayMode === 'grid';
 
   function handleEventAttendance() {
+    //check if user has joined an event, if true, leave event, else join event
     if (props.joined) {
       unAttendMutation.mutate(props.id);
-
       return;
     }
-
     attendMutation.mutate(props.id);
   }
 
+  //event card component
   return (
     <>
       {showGrid ? (

@@ -1,10 +1,11 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
+//auth type
 type AuthType =
   | null
   | {
       error: any;
-      status: "unauthenticated" | "loading";
+      status: 'unauthenticated' | 'loading';
       isAuthenticated: false;
       login: (payload: { email: string; password: string }) => void;
       logout: () => void;
@@ -24,14 +25,16 @@ type AuthType =
       };
       authToken: string;
       refreshToken: string;
-      status: "authenticated";
+      status: 'authenticated';
       isAuthenticated: true;
       login: (payload: { username: string; password: string }) => void;
       logout: () => void;
     };
 
+//create auth context
 const authContext = createContext<AuthType>(null);
 
+//create custom auth context
 function useAuthContext() {
   const store = useContext(authContext);
 

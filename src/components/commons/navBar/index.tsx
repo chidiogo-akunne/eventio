@@ -7,6 +7,7 @@ import { ReactComponent as CaretDown } from "../../../assets/images/icons/caret-
 import { NavContainer, RightCover, Row, NameCover } from "./styles";
 import { useAuthContext } from "../../../context/auth/authContext";
 
+//typings for navbar component
 interface NavBarProps {
   authenticated: boolean;
   newUser?: boolean;
@@ -16,9 +17,11 @@ interface NavBarProps {
 
 export default function NavBarComponent(props: NavBarProps) {
   const { newUser, create, style } = props;
-  const auth = useAuthContext();
 
+  //get auth details from auth store
+  const auth = useAuthContext();
   const { isAuthenticated, logout } = auth;
+
   const fullName = auth.isAuthenticated
     ? `${auth.user.firstName} ${auth.user.lastName}`
     : "Tom Watts";
@@ -26,6 +29,7 @@ export default function NavBarComponent(props: NavBarProps) {
     ? `${auth.user.firstName[0]}${auth.user.lastName[0]}`
     : "TW";
 
+  //navbar component
   return (
     <NavContainer style={style}>
       <div
@@ -36,7 +40,6 @@ export default function NavBarComponent(props: NavBarProps) {
       >
         <Logo />
       </div>
-
       <RightCover>
         {isAuthenticated ? (
           <>

@@ -24,13 +24,18 @@ import {
 } from "./styles";
 
 export default function Dasboard() {
+  //fetch all events using useQuery
   const { data, isLoading } = useQuery("events", fetchEvents);
+
+  //get display mode and event data view from app store
   const {
     displayMode,
     filterView,
     changeDisplayMode,
     changeFilterView,
   } = useAppContext();
+
+  //get auth details from auth store
   const auth = useAuthContext();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -115,35 +120,41 @@ export default function Dasboard() {
                   style={{ display: isVisible ? "block" : "none" }}
                 >
                   <ul>
-                    <li
-                      onClick={() => {
-                        changeFilterView("ALL EVENTS");
-                        setIsVisible(false);
-                      }}
-                    >
-                      ALL EVENTS
+                    <li>
+                      <button
+                        onClick={() => {
+                          changeFilterView("ALL EVENTS");
+                          setIsVisible(false);
+                        }}
+                      >
+                        ALL EVENTS
+                      </button>
                     </li>
-                    <li
-                      onClick={() => {
-                        changeFilterView("FUTURE EVENTS");
-                        setIsVisible(false);
-                      }}
-                    >
-                      FUTURE EVENTS
+                    <li>
+                      <button
+                        onClick={() => {
+                          changeFilterView("FUTURE EVENTS");
+                          setIsVisible(false);
+                        }}
+                      >
+                        FUTURE EVENTS
+                      </button>
                     </li>
-                    <li
-                      onClick={() => {
-                        changeFilterView("PAST EVENTS");
-                        setIsVisible(false);
-                      }}
-                    >
-                      PAST EVENTS
+                    <li>
+                      <button
+                        onClick={() => {
+                          changeFilterView("PAST EVENTS");
+                          setIsVisible(false);
+                        }}
+                      >
+                        PAST EVENTS
+                      </button>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="desktop">
-                <p
+                <button
                   onClick={() => {
                     changeFilterView("ALL EVENTS");
                   }}
@@ -155,8 +166,8 @@ export default function Dasboard() {
                   }}
                 >
                   ALL EVENTS
-                </p>
-                <p
+                </button>
+                <button
                   onClick={() => {
                     changeFilterView("FUTURE EVENTS");
                   }}
@@ -168,8 +179,8 @@ export default function Dasboard() {
                   }}
                 >
                   FUTURE EVENTS
-                </p>
-                <p
+                </button>
+                <button
                   onClick={() => {
                     changeFilterView("PAST EVENTS");
                   }}
@@ -181,7 +192,7 @@ export default function Dasboard() {
                   }}
                 >
                   PAST EVENTS
-                </p>
+                </button>
               </div>
             </LeftCover>
             <RightCover>

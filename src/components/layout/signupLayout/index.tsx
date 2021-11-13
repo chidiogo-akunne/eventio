@@ -9,6 +9,8 @@ interface SignupLayoutProps extends React.PropsWithChildren<unknown> {
 
 export default function SignupLayout(props: SignupLayoutProps) {
   const { children, newUser } = props;
+
+  //wraps signup and sign in pages
   return (
     <Container>
       <Navbar authenticated={false} newUser={newUser} />

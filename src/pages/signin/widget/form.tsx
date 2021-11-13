@@ -16,10 +16,12 @@ function LoginForm({
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  //update email input value
   function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
   }
 
+  //update password input value
   function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
   }
@@ -38,7 +40,7 @@ function LoginForm({
     if (!password) {
       setPasswordError("has to be filled up");
     }
-
+    //if all fields are not empty submit form
     onSubmit({ email, password });
   }
 

@@ -4,6 +4,7 @@ import Suspense from "./components/commons/boundary";
 import { useAuthContext } from "./context/auth/authContext";
 import AppProvider from "./context/app/appProvider";
 
+//lazy load pages/components
 const SigninPage = lazy(() => import("./pages/signin"));
 const SignupPage = lazy(() => import("./pages/signup"));
 const Dashboard = lazy(() => import("./pages/dashboard"));

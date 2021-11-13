@@ -40,6 +40,7 @@ export default function SignupPage() {
     confirmPassword,
   } = state;
 
+  //update input values
   const handleChange = (e: any) => {
     setState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (email.length) {

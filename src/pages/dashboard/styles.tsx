@@ -63,15 +63,17 @@ export const LeftCover = styled.div`
     }
     .dropdown-content {
       display: none;
+      background-color: ${Colors.white};
       position: absolute;
-      top: 7rem;
+      top: 8.5rem;
       left: 4rem;
       overflow: auto;
       z-index: 99999;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       ul {
         list-style: none;
-        li {
+        button {
+          background-color: ${Colors.white};
           font-family: ${Fonts.Hind_Regular};
           font-size: 0.7rem;
           color: ${Colors.greyText};
@@ -94,7 +96,7 @@ export const LeftCover = styled.div`
     .desktop {
       display: flex;
       align-items: center;
-      p {
+      button {
         font-family: ${Fonts.Hind_Regular};
         font-size: 0.9rem;
         margin-right: 2rem;
@@ -107,6 +109,9 @@ export const RightCover = styled.div`
   display: flex;
   align-items: center;
   button {
+    background-color: transparent;
+  }
+  .gridNonVisible {
     background-color: transparent;
   }
   .gridVisible {

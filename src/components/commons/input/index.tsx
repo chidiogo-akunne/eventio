@@ -4,6 +4,7 @@ import Colors from "../../../constants/colors";
 
 import { Input, InputCover, Label } from "./styles";
 
+//typings for input component
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
   placeholder: string;
@@ -28,10 +29,12 @@ export default function InputComponent(props: InputProps) {
   } = props;
   const [visible, setVisible] = useState(true);
 
+  //toggle password visibility
   const showPassword = () => {
     setVisible(!visible);
   };
 
+  //input component
   return (
     <InputCover style={{ marginBottom: error?.length ? "0.5rem" : "2.5rem" }}>
       <Label style={{ top: value ? "-0.8rem" : "-0.4rem" }}>

@@ -1,10 +1,11 @@
-import React from "react";
-import ReactDatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import styled from "styled-components";
-import Fonts from "../../../constants/fonts";
-import Colors from "../../../constants/colors";
+import React from 'react';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import styled from 'styled-components';
+import Fonts from '../../../constants/fonts';
+import Colors from '../../../constants/colors';
 
+//date picker type
 interface DatePickerProps {
   onChange: any;
   value: any;
@@ -14,15 +15,17 @@ interface DatePickerProps {
 
 export function DatePicker(props: DatePickerProps) {
   const { onChange, value, error, errorIndicator } = props;
+
+  //date/time picker function
   return (
     <DatePickerCover
       style={{
-        marginBottom: error?.length ? "0.5rem" : "2.5rem",
-        borderColor: errorIndicator ? Colors.violetRed : Colors.lightGrey,
+        marginBottom: error?.length ? '0.5rem' : '2.5rem',
+        borderColor: errorIndicator ? Colors.violetRed : Colors.lightGrey
       }}
     >
       {value ? (
-        <Label style={{ top: "-0.8rem" }}>
+        <Label style={{ top: '-0.8rem' }}>
           <p>Date</p>
         </Label>
       ) : null}
@@ -43,12 +46,12 @@ export function TimePicker(props: DatePickerProps) {
   return (
     <DatePickerCover
       style={{
-        marginBottom: error?.length ? "0.5rem" : "2.5rem",
-        borderColor: errorIndicator ? Colors.violetRed : Colors.lightGrey,
+        marginBottom: error?.length ? '0.5rem' : '2.5rem',
+        borderColor: errorIndicator ? Colors.violetRed : Colors.lightGrey
       }}
     >
       {value ? (
-        <Label style={{ top: "-0.8rem" }}>
+        <Label style={{ top: '-0.8rem' }}>
           <p>Time</p>
         </Label>
       ) : null}

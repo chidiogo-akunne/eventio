@@ -30,18 +30,22 @@ export default function CreateEventPage() {
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState<Date>();
 
+  //add date and time and convert to iso date string
   let isoDate = date?.toISOString().split("T")[0];
   let iosTime = time?.toISOString().split("T")[1];
   let startsAt = isoDate + "T" + iosTime;
 
   const { title, capacity, description } = state;
 
+  //mutation to create an event
   const { isLoading, isError, error, mutate, isSuccess } = useMutation(() => {
     return createEvent({ title, description, capacity, startsAt });
   });
 
   const handleChange = (e: any) => {
+    //get updates of input fields
     setState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    //if any of the fields throws an error because of empty fields and the user updates the fields, reset error to empty strings
     if (title.length) {
       setTitlerror("");
     }
@@ -80,6 +84,7 @@ export default function CreateEventPage() {
   };
 
   useEffect(() => {
+    //navigate to home screen if creation to an event is successful
     if (isSuccess) {
       return navigate("/");
     }

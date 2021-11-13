@@ -12,6 +12,8 @@ interface DashboardLayoutProps extends React.PropsWithChildren<unknown> {
 export default function DashboardLayout(props: DashboardLayoutProps) {
   const { create, children } = props;
   const linkTo = create ? "/create-event" : "/edit";
+
+  //wraps dashboard and create event pages
   return (
     <Container>
       <Navbar

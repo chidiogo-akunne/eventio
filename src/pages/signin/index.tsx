@@ -9,6 +9,7 @@ export default function SigninPage() {
   const auth = useAuthContext();
   const location = useLocation();
 
+  //check if user is authenticated, if they are, redirect to the home page or to the page they came from
   if (auth.isAuthenticated) {
     let from = location.state?.from?.pathname || "/";
 

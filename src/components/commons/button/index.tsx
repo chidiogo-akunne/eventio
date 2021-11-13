@@ -1,7 +1,7 @@
-import React from "react";
-import Loader from "../loader";
+import React from 'react';
+import Loader from '../loader';
 
-import { Button } from "./styles";
+import { Button } from './styles';
 
 interface ButtonProps extends React.PropsWithChildren<unknown> {
   value?: string;
@@ -20,8 +20,10 @@ export default function ButtonComponent(props: ButtonProps) {
     onClick,
     onSubmit,
     children,
-    loading,
+    loading
   } = props;
+
+  //button component
   return (
     <Button
       className={buttonClass}
